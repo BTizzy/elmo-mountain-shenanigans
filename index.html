@@ -61,6 +61,17 @@
             font-weight: 800;
         }
 
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary), var(--color-accent));
+        }
+        }
+
         header p {
             font-size: clamp(1rem, 3vw, 1.2rem);
             opacity: 0.95;
@@ -360,6 +371,17 @@
 
         footer p:first-child {
             font-weight: 800;
+        }
+
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary), var(--color-accent));
+        }
             margin-bottom: 0.5rem;
             font-size: clamp(1rem, 2.5vw, 1.2rem);
         }

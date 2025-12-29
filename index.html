@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elmo Mountain Shenanigans | Aug 7-14</title>
+    <style>
+        :root {
+            --color-primary: #2563eb;
+            --color-secondary: #06b6d4;
+            --color-accent: #f59e0b;
+            --color-dark: #1f2937;
+            --color-light: #f9fafb;
+            --color-text: #111827;
+            --color-border: #d1d5db;
+            --color-success: #10b981;
+            --color-warning: #f59e0b;
+            --color-error: #ef4444;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            color: var(--color-text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-lg);
+            backdrop-filter: blur(10px);
+        }
+
+        header h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            font-weight: 800;
+        }
+
+        header p {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            opacity: 0.95;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .tagline {
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            margin-top: 0.5rem;
+            font-style: italic;
+            opacity: 0.85;
+            font-weight: 400;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0.5rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 2px solid var(--color-secondary);
+            overflow-x: auto;
+            justify-content: center;
+            flex-wrap: wrap;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-tabs button {
+            padding: 0.75rem 1.25rem;
+            border: 2px solid var(--color-secondary);
+            background: white;
+            color: var(--color-primary);
+            cursor: pointer;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
+            white-space: nowrap;
+            min-width: fit-content;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-tabs button.active {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-tabs button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0);
+            }
+        }
+
+        .hero-image {
+            width: 100%;
+            height: clamp(200px, 30vw, 320px);
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-image:hover {
+            transform: scale(1.02);
+        }
+
+        .activity-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin-bottom: 1.25rem;
+            box-shadow: var(--shadow-md);
+            border-left: 4px solid var(--color-secondary);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .activity-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .activity-card:hover::before {
+            opacity: 1;
+        }
+
+        .activity-card h3 {
+            color: var(--color-primary);
+            margin-bottom: 0.75rem;
+            font-size: clamp(1.25rem, 4vw, 1.5rem);
+            font-weight: 700;
+        }
+
+        .activity-image {
+            width: 100%;
+            height: clamp(180px, 25vw, 240px);
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .activity-image:hover {
+            transform: scale(1.05);
+        }
+
+        .price-tag {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            color: var(--color-warning);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            display: inline-block;
+            margin: 0.5rem 0;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #f59e0b;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            margin: 0.75rem 0;
+            border-left: 4px solid var(--color-success);
+            font-size: clamp(0.9rem, 2vw, 0.95rem);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .bday-box {
+            background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-left: 4px solid #ec4899;
+            font-weight: 500;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .tips-box {
+            background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            margin: 0.75rem 0;
+            border-left: 4px solid #a855f7;
+            font-size: clamp(0.9rem, 2vw, 0.95rem);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .group-tag {
+            background: var(--color-secondary);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 0.85em;
+            display: inline-block;
+            margin-right: 6px;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-box .number {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-box .label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--color-secondary), transparent);
+            margin: 25px 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            color: white;
+            margin-top: 3rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        footer p {
+            margin: 0;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+
+        footer p:first-child {
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--color-accent);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-right: 5px;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 12px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .table-responsive table {
+            min-width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 1.5rem 1rem;
+            }
+            
+            .nav-tabs {
+                gap: 0.25rem;
+                padding: 0.75rem;
+                flex-wrap: wrap;
+            }
+            
+            .nav-tabs button {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.8rem;
+                min-width: auto;
+                flex: 1;
+                max-width: 120px;
+            }
+            
+            .activity-card {
+                padding: 1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .activity-image {
+                height: 180px;
+            }
+            
+            .hero-image {
+                height: 200px;
+            }
+            
+            .container {
+                padding: 0.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.75rem;
+            }
+            
+            .nav-tabs {
+                padding: 0.5rem;
+                gap: 0.125rem;
+            }
+            
+            .nav-tabs button {
+                padding: 0.5rem 0.5rem;
+                font-size: 0.75rem;
+                max-width: 100px;
+            }
+            
+            .activity-card {
+                padding: 0.75rem;
+                border-left-width: 3px;
+            }
+            
+            .activity-card h3 {
+                font-size: 1.1rem;
+            }
+            
+            .price-tag {
+                padding: 0.4rem 0.75rem;
+                font-size: 0.9rem;
+            }
+            
+            .info-box, .tips-box, .bday-box {
+                padding: 0.75rem;
+                font-size: 0.85rem;
+            }
+            
+            .activity-image, .hero-image {
+                height: 160px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>⛰️ Elmo Mountain Shenanigans</h1>
+        <p>August 7–14 | 6 Friends | Glacier + Flathead Lake Mayhem</p>
+        <p class="tagline">Cheap. Rowdy. Adventurous. Local.</p>
+    </header>
+
+    <div class="nav-tabs">
+        <button class="tab-btn active" data-tab="vibe">The Vibe</button>
+        <button class="tab-btn" data-tab="options">Pick Your Adventure</button>
+        <button class="tab-btn" data-tab="bdays">🎉 Birthdays</button>
+        <button class="tab-btn" data-tab="budget">Budget</button>
+    </div>
+
+    <div class="container">
+        <!-- VIBE TAB -->
+        <div id="vibe" class="tab-content active">
+            <img src="https://pplx-res.cloudinary.com/image/upload/v1767026301/search_images/a069013ef159a9540cad249d4244c994dda1e957.jpg" alt="Glacier hikers" class="hero-image">
+            
+            <div class="activity-card">
+                <h3>What You're Actually Doing Here</h3>
+                <p>7 days of: big alpine missions, lake chaos, local bars, weed breaks, gunfire, wildlife spotting, and eating your feelings with good people. No itinerary. No norms. No treasurer. Just crew vibes and earning your downtime.</p>
+                
+                <div class="summary-grid">
+                    <div class="stat-box">
+                        <div class="number">6</div>
+                        <div class="label">Chaos Agents</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="number">4</div>
+                        <div class="label">Big Days</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="number">3</div>
+                        <div class="label">Valleys</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="number">0</div>
+                        <div class="label">Spreadsheets</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity-card">
+                <h3>Daily Rhythm</h3>
+                <p><strong>Morning:</strong> Send it. Hike, water, adrenaline, bugs, bears, views, photos.</p>
+                <p style="margin-top: 10px;"><strong>Afternoon:</strong> Come back demolished. Shower. Eat garbage or cook.</p>
+                <p style="margin-top: 10px;"><strong>Evening:</strong> Lake house chill. Weed (if you're into it), beers, stories, plan tomorrow if you feel like it, film content, sleep when tired.</p>
+                
+                <div class="info-box">
+                    <strong>No one owes anyone anything.</strong> Skip a day? Cool. Opt out of an activity? Awesome. Drink vs. don't drink? Your call. This is mixed crew—respect it, have fun with it.
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="activity-card">
+                <h3>The Gear You Need</h3>
+                <ul>
+                    <li><strong>Hiking boots</strong> (broken in, seriously)</li>
+                    <li><strong>Layers</strong> (fleece, rain jacket, hat)</li>
+                    <li><strong>Swim stuff</strong> (trunks, towel, water shoes)</li>
+                    <li><strong>Sunscreen SPF 50+</strong> (mountain sun hits hard)</li>
+                    <li><strong>Valid ID</strong> (dispensaries, bars, gun range, restaurants)</li>
+                    <li><strong>Headlamp</strong> (early hikes, late nights by the lake)</li>
+                    <li><strong>Water bottle</strong> (hydration = you not dying)</li>
+                    <li><strong>Camera/GoPro</strong> (content hunt is half the fun)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- PICK YOUR ADVENTURE TAB -->
+        <div id="options" class="tab-content">
+            <h2 style="text-align: center; color: var(--color-primary); margin-bottom: 25px;">Activity Menu (Mix & Match)</h2>
+            <p style="text-align: center; color: var(--color-text); margin-bottom: 30px; font-size: 1.05em;"><strong>No schedule. No plan. Pick whatever matches the crew's vibe that day.</strong></p>
+
+            <!-- GLACIER HIKE -->
+            <div class="activity-card">
+                <h3>⛰️ Glacier Alpine Suffer (Day 2 or whenever)</h3>
+                <img src="https://pplx-res.cloudinary.com/image/upload/v1767026300/search_images/514f23206bada85c5f0a46d525f42885900f7e61.jpg" alt="Glacier mountains" class="activity-image">
+                
+                <div class="price-tag">$23–30 per person</div>
+                
+                <p>Full-day push into Glacier. Pick your poison:</p>
+                <ul>
+                    <li><strong>SEND IT:</strong> Siyeh Pass (10–12 mi, 3000+ ft). Alpine ridgeline, snow patches, views that'll wreck you. Straight couple + athletic gay crew.</li>
+                    <li><strong>MID:</strong> Highline Trail or Grinnell Glacier (6–8 mi, moderate). Classic. Fewer people after early August crowds clear.</li>
+                    <li><strong>CHILL:</strong> Jackson Glacier overlook + lake trail (2–3 mi, flat). Scenic, no drama.</li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>Real talk:</strong> August snowfields are small and sketchy. You'll see patches, take cool photos, maybe bootpack 100 yards. Not skiable, not for sliding. Respect them.
+                </div>
+
+                <div class="tips-box">
+                    ⚠️ <strong>Bear spray mandatory.</strong> Check trail status daily (nps.gov/glac). Start at sunrise. Bring layers—passes get cold fast.
+                </div>
+            </div>
+
+            <!-- WATER DAY -->
+            <div class="activity-card">
+                <h3>💦 Flathead Lake Chaos (Day 3 or 6)</h3>
+                <img src="https://pplx-res.cloudinary.com/image/upload/v1767026300/search_images/b947393741f3b3c57dac9621df4654ba01b50393.jpg" alt="Flathead Lake boats" class="activity-image">
+                
+                <div class="price-tag">FREE–$150+ per person</div>
+                
+                <p><strong>DIY Cheap:</strong> Swim, cliff jump (safe spots only), paddleboard/kayak DIY rentals.</p>
+                <p><strong>Mid-Tier Rowdy:</strong> Rent a pontoon or small motorboat for a few hours. Tube, wakeboard, wakesrf, anchor up and drink beer on the water.</p>
+                <p><strong>Explore Bays & Inlets:</strong> Paddle to secluded coves, find swim spots locals know about, beach BBQ vibe.</p>
+
+                <div class="info-box">
+                    <strong>Wild Horse Island:</strong> Paddle/boat out, hike around, see wild horses and bighorn sheep, swim. Day-use state park. Bring snacks.
+                </div>
+
+                <div class="tips-box">
+                    🌞 <strong>Sunburn City:</strong> You will get roasted. Reapply sunscreen every 30–60 min. Bring a hat, sunglasses, tee for water.
+                </div>
+            </div>
+
+            <!-- WHITEFISH -->
+            <div class="activity-card">
+                <h3>🪂 Whitefish Mountain Resort (Day 4)</h3>
+                <img src="https://pplx-res.cloudinary.com/image/upload/v1767026300/search_images/c4f943bb4432ef55591cede24977124f27f69d1c.jpg" alt="Whitefish aerial" class="activity-image">
+                
+                <div class="price-tag">$65–155 per person</div>
+                
+                <p><strong>Aerial Adventure Park:</strong> Ropes, zips, Burma loops, rope climbs. 90 min ~$75–100/person. Maxes out adrenaline.</p>
+                <p><strong>Mountain Biking:</strong> Lift-served, 20+ miles of summer trail. Bike rental + lift ~$60/person.</p>
+                <p><strong>Alpine Slides + Scenic Rides:</strong> Fun but low-adrenaline. Chair + slide combo ~$50–70.</p>
+                <p><strong>Smart Move:</strong> 2 hrs aerial + scenic chair + food = $120–140/person. Mix your crowd: athletes go hard, others chill + film.</p>
+
+                <div class="info-box">
+                    <strong>Pro tip:</strong> Book online 24 hrs ahead. They often run deals. Bring sunscreen, water bottle.
+                </div>
+            </div>
+
+            <!-- GUNS -->
+            <div class="activity-card">
+                <h3>🔫 Northwest Shooter (Day 5)</h3>
+                <img src="https://pplx-res.cloudinary.com/image/upload/v1767026301/search_images/fd671a10a88f9d3cf0a69e94f4fc35fb8d61e98d.jpg" alt="Group adventure" class="activity-image">
+                
+                <div class="price-tag">$50–70 per person (split)</div>
+                
+                <p>Half-day indoor shooting range rental. Columbia Falls, 20 min from Elmo.</p>
+                <ul>
+                    <li>Pistols ($25–30 each), rifles ($40+ each).</li>
+                    <li>2–3 lanes for 6 people, rotate through. Bring ammo or buy theirs.</li>
+                    <li>Staff gives safety brief. Beginner-friendly. Pure dopamine.</li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>Not a shooter?</strong> Watch from observation area, coach people, film reactions, grab a beer at the bar afterward.
+                </div>
+
+                <div class="tips-box">
+                    📞 <strong>Call ahead:</strong> (406) 892-0377 or northwestshooter.com. Book your rental block.
+                </div>
+            </div>
+
+            <!-- EXPLORE BAYS -->
+            <div class="activity-card">
+                <h3>🗺️ Explore Local Bays & Hidden Spots</h3>
+                <img src="https://pplx-res.cloudinary.com/image/upload/v1767026301/search_images/740ad514f99c3fe4ca49e2f806a51efe19309736.jpg" alt="Glacier scenery" class="activity-image">
+                
+                <div class="price-tag">FREE–$30 per person</div>
+                
+                <p><strong>Big Arm Bay:</strong> Shallow, warm, safe for swimming. Local hangout spot. Picnic, cliff jump at marked safe zones.</p>
+                <p><strong>Finley Point State Park:</strong> Lake access, picnic, fish if you got a permit. ~$5–7 day use.</p>
+                <p><strong>Woods Bay:</strong> Quieter, scenic. Kayak paddle, lunch on the dock at local spot.</p>
+                <p><strong>Lakeside & Rollins:</strong> Small towns with beaches, local vibe, grab food/beer, chat with older folks who've got stories.</p>
+
+                <div class="info-box">
+                    <strong>Ask locals at bars or Elmo store:</strong> "Where do you swim? What bays are good?" People love sharing secret spots.
+                </div>
+            </div>
+
+            <!-- FISHING -->
+            <div class="activity-card">
+                <h3>🎣 Fly Fishing & Lake Fishing</h3>
+                <img src="https://pplx-res.cloudinary.com/image/upload/v1767026301/search_images/81aa30c0e7a05764a6a52ebb43ae4b81e95bc48e.jpg" alt="Fishing on lake" class="activity-image">
+                
+                <div class="price-tag">$0–50 per person</div>
+                
+                <p><strong>Flathead Lake Fishing:</strong> World-class fly fishing. Rainbow trout, northern pike, perch. Best in morning/evening.</p>
+                <ul>
+                    <li><strong>DIY Shore Fishing:</strong> Free at public access points. Bring your own rod/reel, or rent locally (~$20–30/day).</li>
+                    <li><strong>Guided Fly Fishing:</strong> $200–400 for half-day guide. Learn techniques, catch-and-release focus.</li>
+                    <li><strong>Boat Fishing:</strong> If you rent a boat, drop lines while cruising. Pike love the deeper waters.</li>
+                    <li><strong>Permits:</strong> Montana fishing license required ($10–20/day). Buy at local shops or online.</li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>Prime spots:</strong> Dayton Bay, Somers Bay, Lakeside area. Early morning or late afternoon for best bites.
+                </div>
+
+                <div class="tips-box">
+                    🌅 <strong>Respect the resource:</strong> Practice catch-and-release. Follow local regs. No live bait in some areas.
+                </div>
+            </div>
+
+            <!-- DIY ADVENTURES -->
+            <div class="activity-card">
+                <h3>🔨 DIY Adventures & Local Exploration</h3>
+                <img src="https://pplx-res.cloudinary.com/image/upload/v1767026300/search_images/b947393741f3b3c57dac9621df4654ba01b50393.jpg" alt="DIY exploration" class="activity-image">
+                
+                <div class="price-tag">$0–40 per person</div>
+                
+                <p><strong>Build Your Own Day:</strong> Mix free activities with minimal cost for maximum adventure.</p>
+                <ul>
+                    <li><strong>Scavenger Hunt:</strong> Create a list of local landmarks, weird signs, wildlife sightings. Winner buys beers.</li>
+                    <li><strong>Forage & Cook:</strong> Pick huckleberries (July–Aug), wild mushrooms (with guide), cook at house.</li>
+                    <li><strong>Photography Challenge:</strong> Best sunset shot, wildlife photo, crew candid. Share at dinner.</li>
+                    <li><strong>Campfire Stories:</strong> Collect firewood legally, build fire pit, share stories till late.</li>
+                    <li><strong>Stargazing:</strong> Flathead has incredible night skies. Bring blankets, find dark spot away from lights.</li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>Local Resources:</strong> Check Elmo store for maps, ask about trails, borrow gear from locals if friendly.
+                </div>
+            </div>
+
+            <!-- BOATING -->
+            <div class="activity-card">
+                <h3>🚤 Advanced Boating & Water Toys</h3>
+                <img src="https://pplx-res.cloudinary.com/image/upload/v1767026300/search_images/b947393741f3b3c57dac9621df4654ba01b50393.jpg" alt="Boat on lake" class="activity-image">
+                
+                <div class="price-tag">$50–150+ per person</div>
+                
+                <p><strong>Beyond Basic Rentals:</strong> Take boating to the next level with toys and exploration.</p>
+                <ul>
+                    <li><strong>Personal Watercraft (Jet Ski):</strong> Rent PWC for 1–2 hours. Race around, explore islands. ~$80–120/hour.</li>
+                    <li><strong>Wakeboarding/Wakesurfing:</strong> Boat with wake setup. Take turns riding. Add tubes for group fun.</li>
+                    <li><strong>Fishing Boat Charter:</strong> Captained boat for serious fishing. Includes gear, spots, cleaning. $300–500/half-day.</li>
+                    <li><strong>Sunset Cruises:</strong> Evening boat rental for drinks, music, stargazing on water.</li>
+                    <li><strong>Island Hopping:</strong> Visit Wild Horse Island, swim to shore, explore trails, picnic.</li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>Safety First:</strong> Life jackets mandatory. Check weather. No drinking while driving boats. Know your limits.
+                </div>
+
+                <div class="tips-box">
+                    ⚖️ <strong>Boat Permits:</strong> Some areas require tribal permits for southern lake. Check CSKT regulations.
+                </div>
+            </div>
+
+            <!-- MOUNTAIN BIKING -->
+            <div class="activity-card">
+                <h3>🚵 Mountain Biking Trails</h3>
+                <img src="https://pplx-res.cloudinary.com/image/upload/v1767026300/search_images/c4f943bb4432ef55591cede24977124f27f69d1c.jpg" alt="Mountain biking" class="activity-image">
+                
+                <div class="price-tag">$0–80 per person</div>
+                
+                <p><strong>Glacier & Flathead Trails:</strong> Epic singletrack, flow trails, and backcountry routes.</p>
+                <ul>
+                    <li><strong>Whitefish Bike Park:</strong> Lift-served downhill. Technical descents, jumps. Bike rental + lift ~$60–80.</li>
+                    <li><strong>Glacier Trails:</strong> Free riding on park roads/trails. Bike Camas Creek Road for views. Bring your bike or rent.</li>
+                    <li><strong>Local Loops:</strong> Elmo area has gravel roads, forest trails. Ask locals for favorite routes.</li>
+                    <li><strong>E-Bike Rentals:</strong> For those wanting assistance on climbs. Available in Whitefish/Kalispell.</li>
+                    <li><strong>Group Rides:</strong> Rent bikes as group, explore together. Stop for swims, photos, beers.</li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>Trail Etiquette:</strong> Yield to hikers. Stay on marked trails. Helmets mandatory. Check trail conditions.
+                </div>
+
+                <div class="tips-box">
+                    🗺️ <strong>Maps & Apps:</strong> Use Trailforks app for routes. Start easy, build up. Bring water, snacks, repair kit.
+                </div>
+            </div>
+
+            <!-- ZIP LINE -->
+            <div class="activity-card">
+                <h3>🚀 Glacier Highline (Flex Option)</h3>
+                
+                <div class="price-tag">$25–75 per person</div>
+                
+                <p>15 min from West Glacier. Ziplines, aerial park, Burma loops, tarzan swing.</p>
+                <ul>
+                    <li><strong>Adventure Pass (full day):</strong> All activities, ~$65–75/adult.</li>
+                    <li><strong>Inflatable Only:</strong> Water slide + obstacle, $25, all day.</li>
+                    <li><strong>Half-Day Combo:</strong> Aerial + lunch, $80–100.</li>
+                </ul>
+
+                <div class="info-box">
+                    Book online or call. Kids/family-friendly, but adults send it hard too.
+                </div>
+            </div>
+        </div>
+
+        <!-- CULTURE MOVED INTO OPTIONS -->
+        <!-- DELETE THIS SECTION -->
+
+            <!-- LOCAL BARS -->
+            <div class="activity-card">
+                <h3>🍺 Elmo's Highwood Bar (Local Legend)</h3>
+                <img src="https://pplx-res.cloudinary.com/image/upload/v1767026301/search_images/81aa30c0e7a05764a6a52ebb43ae4b81e95bc48e.jpg" alt="Lake boats" class="activity-image">
+                
+                <div class="price-tag">$12–25 per person for food/drinks</div>
+                
+                <p>100 Broadway Ave E, Highwood, MT (30 min from Elmo). <strong>THE</strong> local stop.</p>
+                <ul>
+                    <li>Owners are former military couple. Full bar, solid food (pulled pork, burgers, prime rib).</li>
+                    <li><strong>Friday Steak Night Special:</strong> Call ahead, book by Thursday. Legendary.</li>
+                    <li><strong>"Pay It Forward" drinks system:</strong> Leave money for strangers' next rounds. Peak vibes.</li>
+                    <li>Cash only. All one room. Locals + travelers mix. Real Montana energy.</li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>This is THE experience.</strong> Not fancy. All vibes. Go for Friday steak night if timing lines up.
+                </div>
+            </div>
+
+            <!-- BIGFORK -->
+            <div class="activity-card">
+                <h3>🎨 Bigfork (Art Hub + Breweries)</h3>
+                
+                <div class="price-tag">$0–50 per person (varies by venue)</div>
+                
+                <p>30 min south of Elmo. Montana's arts capital during summer. Every weekend has live music, galleries open, foodie vibe.</p>
+                <ul>
+                    <li><strong>Breweries:</strong> Local IPAs, lagers, craft pints. Patios, food trucks, live bands often.</li>
+                    <li><strong>Art Galleries & Shops:</strong> Montana-made goods, weird finds, local artists.</li>
+                    <li><strong>Restaurants:</strong> Fine dining to taco stands. Rooted culture, not tourist trap.</li>
+                    <li><strong>Movies/Theater:</strong> Independent theater sometimes has live events or indie films.</li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>Bigfork Film Festival:</strong> Check dates—if it overlaps your trip, attend a screening + local party vibe afterward.
+                </div>
+            </div>
+
+            <!-- TRIBAL CULTURE -->
+            <div class="activity-card">
+                <h3>🦅 Flathead Indian Reservation & Culture</h3>
+                
+                <div class="price-tag">$0–15 per person</div>
+                
+                <p>Southern half of Flathead Lake sits on the Flathead Indian Reservation (home of Confederated Salish &amp; Kootenai tribes).</p>
+                <ul>
+                    <li><strong>Three Chiefs Cultural Center (Pablo):</strong> Museum of tribal history, artifacts, gift shop. ~$10 entry. Learn the real story of the region.</li>
+                    <li><strong>Polson Town (southern shore):</strong> Tribal hub. Good food, local shops, respectful vibes.</li>
+                    <li><strong>CSKT Bison Range Drive:</strong> Free scenic drive through conservation area. Spot bison, elk, wildlife. Educational + beautiful.</li>
+                    <li><strong>Tribal Recreation Permit:</strong> If fishing or certain water activities on southern lake, grab a permit ($5–10/day).</li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>Be respectful.</strong> This is sacred/cultural land. Many locals are Indigenous. Ask questions, listen, don't treat it like a theme park.
+                </div>
+            </div>
+
+            <!-- KALISPELL SCENE -->
+            <div class="activity-card">
+                <h3>🍻 Kalispell Downtown & Breweries</h3>
+                
+                <div class="price-tag">$0–30 per person</div>
+                
+                <p>40 min from Elmo. Flathead Valley's largest town. Growing craft scene, local energy, good food.</p>
+                <ul>
+                    <li><strong>Downtown Kalispell:</strong> Walk around, shops, galleries, farmers market (if timing lines up).</li>
+                    <li><strong>Breweries:</strong> Multiple options. Cold beers, local vibes, outdoor seating.</li>
+                    <li><strong>Dispensaries:</strong> Honey Sour, 406 Farmacy, Tamarack, Awesome Blossoms. Compare strains/prices. 20–30 min visit tops.</li>
+                    <li><strong>Hockaday Museum of Art:</strong> Montana art. Rotating exhibits. ~$10 entry if you're into that.</li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>Farmers Market:</strong> Summer Saturdays. Fresh fruit stands = flathead cherries (mid-July to mid-August). Pick-your-own orchards nearby.
+                </div>
+            </div>
+
+            <!-- WHITEFISH TOWN -->
+            <div class="activity-card">
+                <h3>🎪 Whitefish Town (45 min from Elmo)</h3>
+                
+                <div class="price-tag">$0–40 per person</div>
+                
+                <p>Cute mountain town. More touristy than Bigfork, but good energy. Summer concerts, outdoor patios, breweries.</p>
+                <ul>
+                    <li><strong>Breweries:</strong> Half Pint, Great Northern Brewing, Kettle House Brewing (nearby Columbia Falls).</li>
+                    <li><strong>Live Music:</strong> Check local calendars—Whitefish often hosts free concerts in summer parks.</li>
+                    <li><strong>Restaurants:</strong> Farm-to-table, fish tacos, burgers, fine dining mixed.</li>
+                    <li><strong>Downtown vibe:</strong> Walk around, shops, ice cream, local art.</li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>Pro move:</strong> Combine Whitefish Mountain day (afternoon) with town dinner + brewery (evening).
+                </div>
+            </div>
+
+            <!-- LIVE MUSIC / EVENTS -->
+            <div class="activity-card">
+                <h3>🎶 Live Music & Summer Events (Check Dates)</h3>
+                
+                <p>August is peak season for outdoor concerts, festivals, and events across Flathead Valley.</p>
+                <ul>
+                    <li><strong>Science on Tap:</strong> Flathead Lake Brewing Company (Polson). Monthly talks on local ecology, wildlife, science. Free or cheap beers + learning.</li>
+                    <li><strong>Flathead Lake Festival of Arts:</strong> Usually July, but check for August pop-ups. Outdoor art, crafts, local makers.</li>
+                    <li><strong>Northern Lights Saloon / Home Ranch Bottoms (Polebridge):</strong> Live music most weekends. Dive bar energy, artists, locals.</li>
+                    <li><strong>Summer Soirée at Flathead Lake:</strong> Check local event calendars. Lakeside concerts, food, drinks.</li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>Check:</strong> GoFlathead.com, FlatHeadBeacon.com for current events/music listings near your dates.
+                </div>
+            </div>
+        </div>
+
+        <!-- BIRTHDAY TAB -->
+        <div id="bdays" class="tab-content">
+            <img src="https://pplx-res.cloudinary.com/image/upload/v1767027210/search_images/ce4816224f3f549443202c0e0cdaebeb35906211.jpg" alt="Birthday celebration" class="hero-image">
+            
+            <div class="activity-card">
+                <h3>🎉 Rachel's Birthday – August 9</h3>
+                
+                <div class="bday-box">
+                    <strong>RACHEL TURNS ___ ON THE 9TH</strong><br>
+                    She's athletic, fiancée energy, ready to rage.
+                </div>
+
+                <p><strong>Idea Menu (Pick What Feels Right That Day):</strong></p>
+                
+                <div class="info-box">
+                    <strong>Water Vibe:</strong> Lake boat/pontoon all day. Tube, wakeboard, anchor up in a quiet bay, champagne toast at sunset. $40–80 per person split.
+                </div>
+
+                <div class="info-box">
+                    <strong>Mountain Vibe:</strong> Whitefish Mountain aerial park or bike day. Adrenaline + views. $120–150 per person.
+                </div>
+
+                <div class="info-box">
+                    <strong>Local Vibe:</strong> Glacier scenic hike + lake time, then dinner at Elmo's Highwood or a Bigfork restaurant. Mix cheap + special.
+                </div>
+
+                <div class="info-box">
+                    <strong>House Vibe:</strong> Lake day (free swim/chill) + crew cooks birthday dinner together. Music, drinks, fire pit if safe. Low-cost, high-vibes.
+                </div>
+
+                <div class="tips-box">
+                    <strong>💡 Film it:</strong> Have someone capture moments. Sunset toast, group photos, candid crew shots. Instagram gold.
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="activity-card">
+                <h3>🎉 Nathan's Birthday – August 11</h3>
+                
+                <div class="bday-box">
+                    <strong>NATHAN TURNS ___ ON THE 11TH</strong><br>
+                    He's athletic, gay crew energy, chaos ready.
+                </div>
+
+                <p><strong>Idea Menu (Pick What Feels Right That Day):</strong></p>
+                
+                <div class="info-box">
+                    <strong>Action Vibe:</strong> Guns + Whitefish zip line combo. Shooting range in morning, adrenaline park in afternoon. $120–150 per person split.
+                </div>
+
+                <div class="info-box">
+                    <strong>Water Vibe:</strong> Big Arm Bay exploration, wild swimming, kayak paddle. Then brewery crawl in Bigfork or Whitefish evening. $30–60 per person.
+                </div>
+
+                <div class="info-box">
+                    <strong>Culture Vibe:</strong> Glacier hike + Bigfork art/brewery night. Live music if available. Dinner at a local spot. $50–80 per person.
+                </div>
+
+                <div class="info-box">
+                    <strong>Party Vibe:</strong> Lake house day party. Booze, music, crew games, sunset bonfire. Friends over if locals want to join. Low-cost, maximum chaos.
+                </div>
+
+                <div class="tips-box">
+                    <strong>💡 No rules:</strong> Nathan picks vibe. Crew adapts. That's the energy.
+                </div>
+            </div>
+        </div>
+
+        <!-- BUDGET TAB -->
+        <div id="budget" class="tab-content">
+            <h2 style="text-align: center; color: var(--color-primary); margin-bottom: 25px;">💰 Budget Ranges (No Rules)</h2>
+
+            <div class="activity-card">
+                <h3>Per-Person Spend (Excl. Lodging)</h3>
+                
+                <div style="background: linear-gradient(135deg, #e8f4f8 0%, #f0f8fa 100%); padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                    <div style="margin-bottom: 15px;">
+                        <strong style="color: var(--color-primary); font-size: 1.1em;">🔥 LEAN ROUTE</strong>
+                        <div style="font-size: 1.3em; color: var(--color-accent); margin-top: 8px;">~$320/person</div>
+                        <ul style="margin-top: 12px; font-size: 0.95em;">
+                            <li>Glacier hike ($23)</li>
+                            <li>Lake DIY free-to-low ($0–20)</li>
+                            <li>Guns ($50)</li>
+                            <li>Groceries/food ($100)</li>
+                            <li>Beers at house ($40)</li>
+                            <li>Weed (optional, $30–50)</li>
+                            <li>Gas split ($50–80)</li>
+                        </ul>
+                    </div>
+
+                    <div style="margin-bottom: 15px; border-top: 2px solid var(--color-secondary); padding-top: 15px;">
+                        <strong style="color: var(--color-primary); font-size: 1.1em;">⚡ MIDDLE GROUND</strong>
+                        <div style="font-size: 1.3em; color: var(--color-accent); margin-top: 8px;">~$500/person</div>
+                        <ul style="margin-top: 12px; font-size: 0.95em;">
+                            <li>Glacier hike ($23)</li>
+                            <li>Lake boat rental ($40–50)</li>
+                            <li>Whitefish Mountain ($120)</li>
+                            <li>Guns ($50)</li>
+                            <li>1–2 restaurant meals ($50–70)</li>
+                            <li>Groceries ($100)</li>
+                            <li>Beers/weed ($60–80)</li>
+                            <li>Gas split ($60–100)</li>
+                        </ul>
+                    </div>
+
+                    <div style="border-top: 2px solid var(--color-secondary); padding-top: 15px;">
+                        <strong style="color: var(--color-primary); font-size: 1.1em;">🚀 FULL SEND</strong>
+                        <div style="font-size: 1.3em; color: var(--color-accent); margin-top: 8px;">~$700/person</div>
+                        <ul style="margin-top: 12px; font-size: 0.95em;">
+                            <li>All activities (Glacier + Whitefish + lake boat + guns + zip line) (~$300)</li>
+                            <li>2–3 restaurant dinners (~$100)</li>
+                            <li>Groceries ($100)</li>
+                            <li>Premium beers/spirits ($80)</li>
+                            <li>Weed (good stuff, $50)</li>
+                            <li>Gas/misc ($70)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity-card">
+                <h3>How to Actually Save Money</h3>
+                <ul>
+                    <li><strong>Groceries:</strong> Hit Costco near Kalispell once. Bulk beer, bulk food staples. Saves 20–30% vs. repeated runs.</li>
+                    <li><strong>Pre-game at house:</strong> Beers at home = $2–3 each. Bars = $6–8 each. Cook 2 meals at home, eat out 1–2 times.</li>
+                    <li><strong>Skip one paid activity:</strong> Whitefish ($155) or boat rental ($40–50 per person). Replace with free lake time or DIY exploration.</li>
+                    <li><strong>Share rentals:</strong> Gun range, boat, etc. Split the total cost across all 6, not per-person rate.</li>
+                    <li><strong>Weed dispensary:</strong> Buy in bulk if multiple people smoke. Ounce split = cheaper per-person than eighth buys.</li>
+                    <li><strong>Gas:</strong> Two cars means double gas. Carpool to activities when possible (Glacier, Whitefish, Columbia Falls).</li>
+                </ul>
+            </div>
+
+            <div class="activity-card">
+                <h3>Quick Cost Ref: Activities</h3>
+                <div class="table-responsive">
+                    <table style="width: 100%; font-size: clamp(0.85rem, 2vw, 0.95rem); border-collapse: collapse;">
+                        <thead>
+                            <tr style="background: var(--color-secondary); color: white;">
+                                <th style="padding: 0.75rem; text-align: left; border-radius: var(--radius-md) 0 0 0;">Activity</th>
+                                <th style="padding: 0.75rem; text-align: left;">Cost/Person</th>
+                                <th style="padding: 0.75rem; text-align: left; border-radius: 0 var(--radius-md) 0 0;">Intensity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid var(--color-border);">
+                                <td style="padding: 0.75rem;">Glacier hike</td>
+                                <td style="padding: 0.75rem;">$23–30</td>
+                                <td style="padding: 0.75rem;">🔥 High</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--color-border); background: #f9fafb;">
+                                <td style="padding: 0.75rem;">Lake DIY swim/kayak</td>
+                                <td style="padding: 0.75rem;">$0–20</td>
+                                <td style="padding: 0.75rem;">🟡 Med</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--color-border);">
+                                <td style="padding: 0.75rem;">Lake boat rental</td>
+                                <td style="padding: 0.75rem;">$40–80</td>
+                                <td style="padding: 0.75rem;">🔥 High</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--color-border); background: #f9fafb;">
+                                <td style="padding: 0.75rem;">Whitefish Mountain</td>
+                                <td style="padding: 0.75rem;">$65–155</td>
+                                <td style="padding: 0.75rem;">🔥 High</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--color-border);">
+                                <td style="padding: 0.75rem;">Guns at range</td>
+                                <td style="padding: 0.75rem;">$50–70</td>
+                                <td style="padding: 0.75rem;">🟡 Med</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--color-border); background: #f9fafb;">
+                                <td style="padding: 0.75rem;">Glacier Highline zip</td>
+                                <td style="padding: 0.75rem;">$25–75</td>
+                                <td style="padding: 0.75rem;">🔥 High</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--color-border);">
+                                <td style="padding: 0.75rem;">Fly fishing</td>
+                                <td style="padding: 0.75rem;">$0–50</td>
+                                <td style="padding: 0.75rem;">🟡 Med</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--color-border); background: #f9fafb;">
+                                <td style="padding: 0.75rem;">Mountain biking</td>
+                                <td style="padding: 0.75rem;">$0–80</td>
+                                <td style="padding: 0.75rem;">🔥 High</td>
+                            </tr>
+                            <tr style="background: #f9fafb;">
+                                <td style="padding: 0.75rem;">Exploration/culture</td>
+                                <td style="padding: 0.75rem;">$0–30</td>
+                                <td style="padding: 0.75rem;">🟡 Med</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="activity-card">
+                <h3>Food/Drink Rough Estimates</h3>
+                <ul>
+                    <li><strong>Groceries (per person):</strong> $100–140 for 7 days (breakfast, lunch, snacks, some dinners at home).</li>
+                    <li><strong>Restaurant meals:</strong> $25–50 per meal if you eat out. Plan 1–2 dinners max.</li>
+                    <li><strong>Beers (pre-game):</strong> $40–60 per person for the week if buying bulk at Costco.</li>
+                    <li><strong>Weed (optional):</strong> $30–50 per person if shared. Skip if not your scene.</li>
+                </ul>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="activity-card">
+                <h3>Settlement Notes</h3>
+                <div class="info-box">
+                    <strong>No treasurer. No spreadsheets.</strong> Just: whoever pays upfront for shared stuff (groceries, boat rental, gas) mentions it. People Venmo them back split-wise. Casual. End of trip, quick settlement.
+                </div>
+
+                <div class="info-box">
+                    <strong>Lodging paid already?</strong> Cool. Activities, food, gas, and optional fun = all you need to budget for.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p style="font-weight: 700; margin-bottom: 8px;">⛰️ Elmo Mountain Shenanigans</p>
+        <p style="font-size: 0.95em; opacity: 0.9;">August 7–14, 2026 | Glacier + Flathead | 6 Chaos Agents</p>
+        <p style="font-size: 0.85em; margin-top: 12px; opacity: 0.8;">GitHub: github.com/btizzy 🖥️</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabName = button.getAttribute('data-tab');
+                    
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to clicked button and corresponding content
+                    button.classList.add('active');
+                    document.getElementById(tabName).classList.add('active');
+                    
+                    // Smooth scroll to top on mobile
+                    if (window.innerWidth <= 768) {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // Add touch feedback for mobile
+            if ('ontouchstart' in window) {
+                tabButtons.forEach(button => {
+                    button.addEventListener('touchstart', function() {
+                        this.style.transform = 'scale(0.95)';
+                    });
+                    
+                    button.addEventListener('touchend', function() {
+                        this.style.transform = '';
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
